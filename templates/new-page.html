@@ -1,0 +1,27 @@
+<div class="left panel col-md-3" ng-controller="AddPageCtrl">
+	<table>
+		<form>
+			<tr>
+				<td><label>ID: </label></td>
+				<td><input name="id" type="text" value="{{ page.id }}" ng-model="page.id" disabled/></td>
+			</tr>	
+			<tr>	
+				<td><label>No: </label></td>
+				<td><input name="page_number" type="text" value="{{ page_number}}" ng-model="page.page_number" required/></td>
+			</tr>	
+			<tr>
+				<td><label>HTML: </label></td>
+				<td><input name="innerHTML" type="text" value="{{ page.innerHTML }}" ng-model="page.innerHTML" /></td>
+			</tr>
+			<tr>
+				<td><label>P-ID: </label></td>
+				<td><input name="project_id" type="text" value="{{ page.project_id }}" ng-model="page.project_id" /></td>
+			</tr>	
+			<tr>
+				<td><ul class="list-inline"><li><button class="btn" ng-click="addPage()">Add Page</button></li></td>
+				<td><li><button class="btn" ng-click="cancelPage()">Cancel</button></li></ul></td>
+			</tr>	
+		</form>
+	</table>	
+
+</div>

@@ -1,0 +1,33 @@
+<div class="right panel col-md-3" ng-controller="ElementCtrl"><h1>Elements</h1>
+		<ul class="list-group">
+			
+			<!-- <li><button tag="{{elements[1]}}" element-push ng-click="addElement(e,elements[1])" class="list-group-item">Image</button></li> -->
+			<li><button tag="{{elements[2]}}" element-push ng-click="addElement(e,elements[2])" class="list-group-item">Text</button></li>
+			<li><button tag="{{elements[2]}}" element-push ng-click="addElement(e,elements[2])" class="list-group-item">Image</button></li>
+		</ul>
+	<!-- <div class="col-md-4" ng-controller="ElementListCtrl">
+
+		<div ng-repeat="(listName, list) in models.lists" class="col-md-6">
+			<div class="panel panel-info">
+				<div class="panel heading">
+					
+				</div>
+				<div class="panel-body" ng-include="'templates/simple.html'">
+						<ul dnd-list="list">
+							<li ng-repeat="ele in elements"
+							dnd-draggable="item"
+							dnd-moved="objects.splice($index, 1)"
+							dnd-effect-allowed="move"
+							dnd-selected="models.selected = item"
+							class="list-group-item"
+							ng-click="dropElement(e, ele)"
+							ng-class="{'selected': models.selected === item}"
+
+							>{{element.label}}</li>
+
+						</ul>	
+				</div> -->
+			</div>	
+		</div>		
+	</div>
+</div>		

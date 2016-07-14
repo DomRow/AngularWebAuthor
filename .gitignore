@@ -1,0 +1,6 @@
+#Ignore node packages
+/node_modules
+
+#Ignore zip file backups
+*.zip
+
