@@ -1,41 +1,110 @@
-
+/*2 Columns 50%w 100%h--------------------------------*/
 .defaultClass1{
 	width: 50%;
 	height: 100%;
-	background-color: #d3d3d3;
+	/*background-color: #d3d3d3;*/
 	float:left;
-	poistion:fixed;
+	padding: 5px;
+	
 }
 
 .defaultClass2{
 	width: 50%;
 	height: 100%;
-	background-color: #bdbdbd;
+	/*background-color: #bdbdbd;*/
 	float:left;
+	padding: 5px;
+	
 }
+/*---------------------------------------------------*/
 
 .defaultClass3{
-	width: 50%;
-	height: 50%;
+	width: 48%;
+	height: 96%;
 	background-color: #a8a8a8;
 	float:left;
+	margin:3px;
 }
 
+.defaultClass4{
+	width: 48%;
+	height: 96%;
+	background-color: #a9a9a9;
+	float:left;
+	margin:3px;
+}
+
+/*---------------------------------------------------*/
+
+.defaultClass5{
+	width: 96%;
+	height: 48%;
+	background-color: #a8a8a8;
+	float:left;
+	margin:3px;
+	position: absolute;
+}
+
+.defaultClass6{
+	width: 96%;
+	height: 48%;
+	top: 250px;
+	background-color: #a9a9a9;
+	float:left;
+	margin:3px;
+	position: absolute;
+}
+
+/*---------------------------------------------------*/
+
+.defaultClass7{
+	width: 46%;
+	height: 96%;
+	top: 0px;
+	background-color: #a8a8a8;
+	float:left;
+	margin:3px;
+	position: absolute;
+}
+
+.defaultClass8{
+	width: 46%;
+	height: 46%;
+	top: 0px;
+	left: 450px;
+	background-color: #a9a9a9;
+	float:left;
+	margin:3px;
+	position: absolute;
+}
+.defaultClass9{
+	width: 46%;
+	height: 46%;
+	top: 250px;
+	left: 450px;
+	background-color: #a9a9a9;
+	float:left;
+	margin:3px;
+	position: absolute;
+}
+
+/*2nd Set 100%w 50%h ---------------------------------*/
 .style1{
-	width:50%;
+	width:100%;
 	background-color: pink;
 	float:left;
-	height: 40%;
+	height: 50%;
 	
 	}
 
 .style2{
-	width:50%;
+	width:100%;
 	background-color: purple;
 	float:left;
-	height: 40%;
+	height: 50%;
 	
 }
+/*---------------------------------------------------*/
 
 .style3{
 	width:100%;
@@ -51,8 +120,9 @@
 }
 
 .formatButton{
-	/*position: fixed;*/
-	bottom:0;
+	position: fixed;
+	
+	bottom:100px;
 }
 
 h2 {

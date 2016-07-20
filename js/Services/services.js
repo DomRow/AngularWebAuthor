@@ -1,12 +1,12 @@
 myApp.factory("PagesFactory", function($resource){
-	return $resource("http://localhost/BasicAngSlimPhph/api/pages", {},{
+	return $resource("http://localhost/angProj/api/pages", {},{
 		query:{ method:'GET', isArray: false },
 		create:{ method: "POST" }
 	})
 });
 
 myApp.factory("PageFactory", function($resource){
-	return $resource("http://localhost/BasicAngSlimPhph/api/pages/:pageId", {},{
+	return $resource("http://localhost/angProj/api/pages/:pageId", {},{
 		get: { method: 'GET' },
 		update: { method: 'PUT', params: {id:'@id'} },
 		delete: { method: 'DELETE', params: {id:'@id'} }

@@ -1,4 +1,4 @@
-var mainURL = "http://localhost/BasicAngSlimPhph/api/pages";
+var mainURL = "http://localhost/angProj/api/pages";
 
 myApp.controller('GlobalCtrl', ['$scope', '$window', 'PagesFactory','PageFactory',
 	function($scope, $window, PagesFactory, PageFactory){
@@ -9,7 +9,12 @@ myApp.controller('GlobalCtrl', ['$scope', '$window', 'PagesFactory','PageFactory
 			$scope.$on('emit', function(event, data){
 				//console.log(data);
 			})
+
+
+
 		})
+
+
 	}
 	]);		
 
@@ -32,6 +37,8 @@ myApp.controller('GetListCtrl', ['$scope', '$window', 'PagesFactory','PageFactor
 		To print see*/
 		$scope.pages = PagesFactory.query(function(data){
 			$scope.pages = data.page;
+			console.log($scope.pages[0].jsonObj[14]);
+
 		});
 	}]);
 
@@ -54,6 +61,7 @@ myApp.controller('AddPageCtrl', ['$scope', '$window', '$routeParams', 'PagesFact
 				console.log("Page save");
 			}, function(err){
 				console.log(err);
+				console.log($scope.page);
 			});
 			$window.location.href = '#/pages';
 		}
@@ -64,11 +72,15 @@ myApp.controller('AddPageCtrl', ['$scope', '$window', '$routeParams', 'PagesFact
 			console.log(BroadCastFactory);
 		}
 
-		$scope.$on('eventSend', function(){
-			$scope.message = BroadCastFactory.message;
-				//console.log($scope.message);
-			})
-	}]);
+		$scope.cancelPage = function () {
+			console.log("Cancel click");
+			$window.location.href = '#/pages';
+		};
+		// $scope.$on('eventSend', function(){
+		// 	$scope.message = BroadCastFactory.message;
+		// 		//console.log($scope.message);
+		// 	})
+}]);
 
 myApp.controller('PageDetailCtrl', ['$scope','$routeParams','PageFactory','$window',
 	function($scope, $routeParams, PageFactory, $window){
@@ -78,18 +90,15 @@ myApp.controller('PageDetailCtrl', ['$scope','$routeParams','PageFactory','$wind
 			$window.location.href = '#/pages';
 		};
 
-		$scope.cancelPage = function () {
-			console.log("Cancel click");
-			$window.location.href = '#/pages';
-		};
+		
 
 		$scope.page = PageFactory.show({id: $routeParams.id});
 
 	}]);
 
 
-myApp.controller('ContentCtrl', ['$scope', 'PagesFactory','PageFactory',
-	function($scope, PagesFactory, PageFactory){
+myApp.controller('ContentCtrl', ['$scope', 'PagesFactory','BroadCastFactory','PageFactory',
+	function($scope, PagesFactory, BroadCastFactory, PageFactory){
 		$scope.pagesContent = PagesFactory.query(function(data){
 			$scope.pages = data.page;
 				//console.log($scope);
@@ -120,7 +129,7 @@ myApp.controller('ContentCtrl', ['$scope', 'PagesFactory','PageFactory',
 					})
 
 					$scope.updateHtml = function(){
-						console.log($scope.matched.id);
+						console.log("update");
 						//$scope.file = PageFactory.update({ id: $scope.matched.id }, function(){
 							//console.log($scope.file.page);	}
 							$scope.file = PageFactory.get({ id: $scope.matched.id });	
@@ -128,23 +137,42 @@ myApp.controller('ContentCtrl', ['$scope', 'PagesFactory','PageFactory',
 							$scope.file2 = PageFactory.update({ id:3},{"innerHTML":"<new>"});	
 							console.log($scope.file2);
 							//);
-						
-						//$scope.updatedHtml = PageFactory.update({id:2},);
-					};
-				})
-	}])
+
+};
+
+$scope.classesCss = ["default2","default3"];
+
+$scope.toggleClass1 = function(){
+	$scope.cssEvent1 = e = 'cssToggle1';
+	var classSend = $scope.classesCss[0]; 
+	BroadCastFactory.prepForBroadcast(e, classSend);
+	console.log(BroadCastFactory);
+
+}
+
+$scope.toggleClass2 = function(){
+	$scope.cssEvent2 = e = 'cssToggle2';
+	var classSend = $scope.classesCss[1]; 
+	BroadCastFactory.prepForBroadcast(e, classSend);
+	console.log(BroadCastFactory);
+
+}
+})
+}])
 
 myApp.controller('ElementCtrl', ['$scope','BroadCastFactory', function($scope, BroadCastFactory){
 	$scope.elements = {
 		1 : '<img>',
-		2 : '<article></article>'
+		2 : '<article></article>',
+		3 : '<textarea ui-tinymce="tinymceOptions" ng-model="tinymceModel"></textarea>'
 	}
 
-	// $scope.addElement = function(e,ele){
-	// 	$scope.event = e = 'elementSend';
-	// 	BroadCastFactory.prepForBroadcast(e,ele);
-	// 	console.log(BroadCastFactory);
-	// };
+	$scope.addElement = function(e,ele){
+		$scope.event = e = 'elementSend';
+		BroadCastFactory.prepForBroadcast(e,ele);
+		console.log(BroadCastFactory);
+		
+	};
 
 
 }])
