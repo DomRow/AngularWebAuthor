@@ -1,4 +1,4 @@
-var myApp = angular.module('dropTests',['ngRoute','ngDragDrop','ngSanitize', 'ngResource','ui.tinymce','dndLists','angularModalService','ui-bootstrap']);
+var myApp = angular.module('dropTests',['ngRoute','ngDragDrop','ngSanitize', 'ngResource','ui.tinymce','dndLists','angularModalService','ui.bootstrap', 'textAngular']);
 
 myApp.config(['$routeProvider',
   function($routeProvider) {

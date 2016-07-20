@@ -116,7 +116,7 @@ myApp.controller("ContentElementCtrl", function($scope) {
 
     }
 
-    $scope.tinymceModel = "";
+    $scope.htmlVariable = "";
 
           $scope.getContent = function() {
             console.log('Editor content:', $scope.tinymceModel);
@@ -127,9 +127,10 @@ myApp.controller("ContentElementCtrl", function($scope) {
           };
 
           $scope.tinymceOptions = {
-            plugins: 'link image code',
+            plugins: 'link code',
             toolbar: 'undo redo | italic bold | alignleft aligncenter alignright | code',
             skin: 'lightgray',
+            allow_conditional_comments: false,
             theme: 'modern',
             width: 200,
             height: 100
@@ -148,6 +149,12 @@ myApp.controller("ContentElementCtrl", function($scope) {
         var num = $scope.pageToLoad = data;
         $scope.pageObject = $scope.pageArray[num];
         $scope.showDiv = true;
+    })
+
+    $scope.$on('elementSend', function(event, data){
+        console.log("Now work the tinymce visibility");
+        $scope.mceVisibility = {boolean: true};
+
     })
     
     
