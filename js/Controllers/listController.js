@@ -78,7 +78,7 @@ myApp.controller('YesNoController', ['$scope', function($scope){
 /*
     Content Area Ctrl for Drop Elements
 */
-myApp.controller("ContentElementCtrl", function($scope) {
+myApp.controller("ContentElementCtrl",['$scope','PageFactory', function($scope,PageFactory) {
     
     $scope.$on('cssToggle1', function(event,data){
         var newClass = $scope.newClass = data;
@@ -116,27 +116,6 @@ myApp.controller("ContentElementCtrl", function($scope) {
 
     }
 
-    $scope.htmlVariable = "";
-
-          $scope.getContent = function() {
-            console.log('Editor content:', $scope.tinymceModel);
-          };
-
-          $scope.setContent = function() {
-            $scope.tinymceModel = 'Time: ' + (new Date());
-          };
-
-          $scope.tinymceOptions = {
-            plugins: 'link code',
-            toolbar: 'undo redo | italic bold | alignleft aligncenter alignright | code',
-            skin: 'lightgray',
-            allow_conditional_comments: false,
-            theme: 'modern',
-            width: 200,
-            height: 100
-          };
-
-
     $scope.$on('cssToggle2', function(event,data){
         var newClass2 = $scope.newClass2 = data;
         console.log($scope.newClass2);
@@ -144,10 +123,19 @@ myApp.controller("ContentElementCtrl", function($scope) {
     })
 
     $scope.$on('eventSend', function(event,data){
-        console.log(data);
-        console.log("//get data number and load matched pageObject");
+        
         var num = $scope.pageToLoad = data;
-        $scope.pageObject = $scope.pageArray[num];
+        
+        //$scope.pageObject = $scope.pageArray[num];
+
+        $scope.pageObject = PageFactory.get({
+                pageId : data},
+                function(page){
+                    //console.log("Page Retrieved: ");
+                    //console.log($scope.pageObject);
+                })
+
+        console.log($scope.pageObject);
         $scope.showDiv = true;
     })
 
@@ -260,7 +248,8 @@ myApp.controller("ContentElementCtrl", function($scope) {
     // Model to JSON for demo purpose
     $scope.$watch('pageArray', function(pageArray) {
         $scope.modelAsJson = angular.toJson(pageArray, true);
-        console.log($scope.modelAsJson);
+        //console.log($scope.modelAsJson);
+        //console.log($scope.pageArray);
     }, true);
 
-});
+}]);

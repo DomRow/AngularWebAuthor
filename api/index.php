@@ -48,14 +48,15 @@ function addPage() {
 	error_log('addPage\n', 3, 'C:\xampp\php\logs\php_error_log');
 	$request = Slim::getInstance()->request();
 	$page = json_decode($request->getBody());
-	$sql = "INSERT INTO page (page_number, innerHTML, project_id) VALUES (:page_number, :innerHTML, :project_id)";
+	$sql = "INSERT INTO page (page_number, title, project_number, jsonObj) VALUES (:page_number, :title, :project_number, :jsonObj)";
 	try {
 		$db = getConnection();
 		$stmt = $db->prepare($sql);
 		// $stmt->bindParam("id", $page->id); 
 		$stmt->bindParam("page_number", $page->page_number);
-		$stmt->bindParam("innerHTML", $page->innerHTML);
-		$stmt->bindParam("project_id", $page->project_id);
+		$stmt->bindParam("title", $page->title);
+		$stmt->bindParam("project_number", $page->project_number);
+		$stmt->bindParam("jsonObj", $page->jsonObj);
 		$stmt->execute();
 		$page->id = $db->lastInsertId();
 		$db = null;
@@ -70,13 +71,14 @@ function updatePage($id) {
 	$request = Slim::getInstance()->request();
 	$body = $request->getBody();
 	$page = json_decode($body);
-	$sql = "UPDATE page SET page_number=:page_number, innerHTML=:innerHTML, project_id=:project_id WHERE id=:id";
+	$sql = "UPDATE page SET page_number=:page_number, title=:title, project_number=:project_number, jsonObj=:jsonObj WHERE id=:id";
 	try {
 		$db = getConnection();
 		$stmt = $db->prepare($sql);  
 		$stmt->bindParam("page_number", $page->page_number);
-		$stmt->bindParam("innerHTML", $page->innerHTML);
-		$stmt->bindParam("project_id", $page->project_id);
+		$stmt->bindParam("title", $page->title);
+		$stmt->bindParam("project_number", $page->project_number);
+		$stmt->bindParam("jsonObj", $page->jsonObj);
 		$stmt->bindParam("id", $id);
 		$stmt->execute();
 		$db = null;

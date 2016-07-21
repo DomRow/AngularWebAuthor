@@ -37,7 +37,7 @@ myApp.controller('GetListCtrl', ['$scope', '$window', 'PagesFactory','PageFactor
 		To print see*/
 		$scope.pages = PagesFactory.query(function(data){
 			$scope.pages = data.page;
-			console.log($scope.pages[0].jsonObj[14]);
+			//console.log($scope.pages[0].jsonObj);
 
 		});
 	}]);
