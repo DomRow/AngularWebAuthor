@@ -120,9 +120,9 @@
 }
 
 .formatButton{
-	position: fixed;
+	position: absolute;
 	
-	bottom:50px;
+	bottom:-70px;
 }
 
 h2 {
