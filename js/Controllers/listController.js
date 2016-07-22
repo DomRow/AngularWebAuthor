@@ -6,47 +6,9 @@ myApp.controller("ElementListCtrl", ['$scope', 'BroadCastFactory','ModalService'
     $scope.models = {
         selected: null,
         lists: {"A": []}
-        //, "B": []
     };
 
     $scope.show = {message : false};
-
-    $scope.tinymceModel = "";
-
-          $scope.getContent = function() {
-            console.log('Editor content:', $scope.tinymceModel);
-          };
-
-          $scope.setContent = function() {
-            $scope.tinymceModel = 'Time: ' + (new Date());
-          };
-
-          $scope.tinymceOptions = {
-            plugins: 'link image code',
-            toolbar: 'undo redo | italic bold | alignleft aligncenter alignright | code',
-            skin: 'lightgray',
-            theme: 'modern',
-            width: 200,
-            height: 100
-          };
-
-     $scope.showAModal = function() {
-        console.log(ModalService);
-    // Just provide a template url, a controller and call 'showModal'.
-    ModalService.showModal({
-      templateUrl: "templates/modal.html",
-      controller: "YesNoController"
-    }).then(function(modal) {
-      // The modal object has the element built, if this is a bootstrap modal
-      // you can call 'modal' to show it, if it's a custom modal just show or hide
-      // it as you need to.
-      modal.element.modal();
-      modal.close.then(function(result) {
-        $scope.message = result ? "You said Yes" : "You said No";
-      });
-    });
-
-  };
 
     var tags = $scope.dataItems = ["Image"];
 
@@ -107,8 +69,6 @@ myApp.controller("ContentElementCtrl",['$scope','PageFactory', function($scope,P
         console.log("toggle 3");
     }
 
-
-
     $scope.tinyMceLoad = function(){
         console.log("Text Area Click");
         $scope.showMce = !$scope.showMce;
@@ -128,14 +88,21 @@ myApp.controller("ContentElementCtrl",['$scope','PageFactory', function($scope,P
         
         //$scope.pageObject = $scope.pageArray[num];
 
-        $scope.pageObject = PageFactory.get({
-                pageId : data},
-                function(page){
-                    //console.log("Page Retrieved: ");
-                    //console.log($scope.pageObject);
-                })
+        $scope.pageObj = PageFactory.get({pageId : data},
+            function(page){
+                $scope.pageObject = page.toJSON(page)
+                console.log(page);
+                //console.log($scope.pageObject.jsonObj);
+                var jsonTest = $scope.pageObject.jsonObj;
+                
+                // console.log(JSON.stringify(jsonTest));
+                var ting = $scope.pageObject = eval("("+jsonTest+')');
+                return $scope.pageObject;
+                console.log($scope.pageObject)      
+        })
+         
 
-        console.log($scope.pageObject);
+
         $scope.showDiv = true;
     })
 

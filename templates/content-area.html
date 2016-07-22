@@ -3,7 +3,7 @@
 		<li ng-repeat="page in pageObject.columns"></li>
 
 	</ul>	
-
+	
 	<div  class="defaultClass1" ng-show="!my.message" ng-hide="my.message"><img src="{{pageObject.columns[0].items[0].image.src}}" width="{{pageObject.columns[0].items[0].image.width}}" height="{{pageObject.columns[0].items[0].image.height}}" align="{{pageObject.columns[0].items[0].image.align}}" ng-click="alert(this)"></div>
 	<div  class="defaultClass2" ng-show="!my.message" ng-hide="my.message" ng-click="alert(this)"><h1 class="{{pageObject.columns[0].items[1].type}}" style="{{pageObject.columns[0].items[1].headerStyle}}">{{pageObject.columns[0].items[1].headerText}}</h1>
 
