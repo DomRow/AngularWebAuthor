@@ -90,6 +90,7 @@ myApp.controller("ContentElementCtrl",['$scope','PageFactory', '$routeParams',fu
 
         $scope.pageObj = PageFactory.get({id : data},
             function(page){
+                $scope.pageLoad = page;
                 $scope.pageObject = page.toJSON(page)
                 console.log(page);
                 //console.log($scope.pageObject.jsonObj);
@@ -112,18 +113,23 @@ myApp.controller("ContentElementCtrl",['$scope','PageFactory', '$routeParams',fu
     
     $scope.savePtext = function(){
         var currentId = $scope.pageToLoad;
-        console.log("Page object");
+        console.log($scope.pageToLoad);
         //new empty text variable 
         var newText = $scope.nextTextBound = "";
         //Bind new text to variable
         var textToBeBound = $scope.htmlVariable;
         console.log(textToBeBound);
         //Bind back to JSON object's text value
-
+        $scope.pageObject.columns[0].items[1].text = textToBeBound;
+        //
+        $scope.testString = JSON.stringify($scope.pageObject);
+        console.log($scope.testString);
+        $scope.pageToBeUploaded = {page_number:$scope.pageLoad.page_number,title:$scope.pageLoad.title, jsonObj:$scope.testString};
+        console.log($scope.pageToBeUploaded);
         //Update data base 
-        console.log($scope.pageObject);
-        $scope.pText = PageFactory.update({id:$scope.pageToLoad}, $scope.pageTree);
-        console.log($scope.pText);
+        $scope.pText = PageFactory.update({id:$scope.pageToLoad}, $scope.pageToBeUploaded);
+        //pageObject is just the json value
+        
     }
 
     $scope.closeModal = function(){
