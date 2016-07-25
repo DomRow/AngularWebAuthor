@@ -40,7 +40,7 @@ myApp.controller('YesNoController', ['$scope', function($scope){
 /*
     Content Area Ctrl for Drop Elements
 */
-myApp.controller("ContentElementCtrl",['$scope','PageFactory', function($scope,PageFactory) {
+myApp.controller("ContentElementCtrl",['$scope','PageFactory', '$routeParams',function($scope,PageFactory, $routeParams) {
     
     $scope.$on('cssToggle1', function(event,data){
         var newClass = $scope.newClass = data;
@@ -112,7 +112,18 @@ myApp.controller("ContentElementCtrl",['$scope','PageFactory', function($scope,P
 
     })
     
-    
+    $scope.savePtext = function(){
+        console.log("Clicked");
+        var currentId = $scope.pageToLoad;
+        var page = $scope.pageTree = {"page_number":"2","title":"hi","jsonObj":"[{nexus}]"};
+        $scope.pText = PageFactory.update({id:4}, $scope.pageTree);
+        console.log($scope.pText);
+    }
+
+    $scope.closeModal = function(){
+        console.log("Closed");   
+    }
+
     $scope.pageArray = [{
         jsonObjNo : 1,
         columns : [{
