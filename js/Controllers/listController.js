@@ -88,35 +88,41 @@ myApp.controller("ContentElementCtrl",['$scope','PageFactory', '$routeParams',fu
         
         //$scope.pageObject = $scope.pageArray[num];
 
-        $scope.pageObj = PageFactory.get({pageId : data},
+        $scope.pageObj = PageFactory.get({id : data},
             function(page){
                 $scope.pageObject = page.toJSON(page)
                 console.log(page);
                 //console.log($scope.pageObject.jsonObj);
                 var jsonTest = $scope.pageObject.jsonObj;
-                
+                console.log(jsonTest);
                 // console.log(JSON.stringify(jsonTest));
-                var ting = $scope.pageObject = eval("("+jsonTest+')');
+
+                var ting = $scope.pageObject = eval("("+jsonTest+")");
+                console.log(ting);
+                // console.log(ting.columns[0].items[0]);
+                // console.log(ting.columns[0].items[1]);
                 return $scope.pageObject;
-                console.log($scope.pageObject)      
+                
         })
-         
-
-
-        $scope.showDiv = true;
     })
 
     $scope.$on('elementSend', function(event, data){
-        console.log("Now work the tinymce visibility");
         $scope.mceVisibility = {boolean: true};
-
     })
     
     $scope.savePtext = function(){
-        console.log("Clicked");
         var currentId = $scope.pageToLoad;
-        var page = $scope.pageTree = {"page_number":"2","title":"hi","jsonObj":"[{nexus}]"};
-        $scope.pText = PageFactory.update({id:4}, $scope.pageTree);
+        console.log("Page object");
+        //new empty text variable 
+        var newText = $scope.nextTextBound = "";
+        //Bind new text to variable
+        var textToBeBound = $scope.htmlVariable;
+        console.log(textToBeBound);
+        //Bind back to JSON object's text value
+
+        //Update data base 
+        console.log($scope.pageObject);
+        $scope.pText = PageFactory.update({id:$scope.pageToLoad}, $scope.pageTree);
         console.log($scope.pText);
     }
 

@@ -170,7 +170,7 @@ myApp.controller('ElementCtrl', ['$scope','BroadCastFactory', function($scope, B
 	$scope.addElement = function(e,ele){
 		$scope.event = e = 'elementSend';
 		BroadCastFactory.prepForBroadcast(e,ele);
-		console.log(BroadCastFactory);
+		//console.log(BroadCastFactory);
 		
 	};
 

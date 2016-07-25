@@ -6,9 +6,9 @@ myApp.factory("PagesFactory", function($resource){
 });
 
 myApp.factory("PageFactory", function($resource){
-	return $resource("http://localhost/angProj/api/pages/:pageId", {},{
+	return $resource("http://localhost/angProj/api/pages/:id", {},{
 		get: { method: 'GET' },
-		update: { method: 'PUT' },
+		update: { method: 'PUT', params:{ id: '@_id' } },
 		delete: { method: 'DELETE', params: {id:'@id'} }
 	})
 
