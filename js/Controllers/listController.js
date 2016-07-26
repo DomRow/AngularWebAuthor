@@ -112,6 +112,7 @@ myApp.controller("ContentElementCtrl",['$scope','PageFactory', '$routeParams',fu
     })
     
     $scope.savePtext = function(){
+        alert("Are you sure?")
         var currentId = $scope.pageToLoad;
         console.log($scope.pageToLoad);
         //new empty text variable 
