@@ -8,8 +8,9 @@ Create a 'pages' database in your SQL server.
 Import the 'page.sql' file to the 'pages' database - this will create the page table.
 
 Go to the 'structure' tab in the table and change the 'jsonObj' column.
-  - Change the "MIME type" to 'text/plain'
-  - Change the "Browser Display Transform" to 'JSON (text/plain: JSON)'
+  1 Change the "MIME type" to 'text/plain'
+  2 Change the "Browser Display Transform" to 'JSON (text/plain: JSON)'
+  3 Change the "Input Transformation" to 'JSON (text/plain: JSONEditor)'
    
 This will display the hex string as their original formats.
 
