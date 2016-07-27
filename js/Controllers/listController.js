@@ -1,6 +1,20 @@
 /*
     Element List Area Ctrl
 */
+
+myApp.controller('ElementCtrl', ['$scope','BroadCastFactory', function($scope, BroadCastFactory){
+    $scope.elements = {
+        1 : '<img>',
+        2 : '<article></article>',
+        3 : '<textarea ui-tinymce="tinymceOptions" ng-model="tinymceModel"></textarea>'
+    }
+    $scope.addElement = function(e,ele){
+        $scope.event = e = 'elementSend';
+        BroadCastFactory.prepForBroadcast(e,ele);
+    };
+
+}])
+
 myApp.controller("ElementListCtrl", ['$scope', 'BroadCastFactory','ModalService', function($scope, BroadCastFactory, ModalService) {
 
     $scope.models = {
@@ -31,36 +45,50 @@ myApp.controller("ElementListCtrl", ['$scope', 'BroadCastFactory','ModalService'
 
 }]);
 
-myApp.controller('YesNoController', ['$scope', function($scope){
-    $scope.close = function(result) {
-    close(result, 500); // close, but give 500ms for bootstrap to animate
- };
-}])
 
 /*
     Content Area Ctrl for Drop Elements
 */
-myApp.controller("ContentElementCtrl",['$scope','PageFactory', '$routeParams',function($scope,PageFactory, $routeParams) {
+myApp.controller("ContentAreaCtrl",['$scope','PageFactory', '$routeParams',function($scope,PageFactory, $routeParams) {
     
     $scope.$on('cssToggle1', function(event,data){
         var newClass = $scope.newClass = data;
         console.log($scope.newClass);
-        console.log("cssToggle1");
-        
-
+        console.log("cssToggle1");    
     })
+
     $scope.my = { message: false };
     $scope.toggleClass1 = function(){
-        $scope.my.message   = !$scope.my.message;        
-        console.log($scope.my.message);
+        console.log("toggle 1");
+        $scope.pageObject.columns[0].items[0].cssClass = "defaultClass5";
+        $scope.pageObject.columns[0].items[1].cssClass = "defaultClass6";
+        //$scope.my.message = !$scope.my.message;        
+        
     }
 
     $scope.my = { message2: false };
     $scope.toggleClass2 = function(){
-        $scope.my.message   = !$scope.my.message;
-        $scope.my.message2   = !$scope.my.message2;
         console.log("toggle 2");
+        //$scope.my.message   = !$scope.my.message;
+        //$scope.my.message2   = !$scope.my.message2;
+        
+        //cycle through classes array and bind new value to columns object
+        $scope.pageObject.columns[0].items[0].cssClass = "defaultClass3";
+        $scope.pageObject.columns[0].items[1].cssClass = "defaultClass4";
+
     }
+
+    $scope.updateHtml = function(){
+        console.log("update");
+        //json component
+        var jsonPage = $scope.pageObject;
+        var jsonString = $scope.jsonString = JSON.stringify(jsonPage);
+        //full object ie page/id/proj/jsonObj
+        var fullPageObject = $scope.pageObj;
+        $scope.pageClassToBeUploaded = {page_number:fullPageObject.page_number,title:fullPageObject.title, jsonObj:jsonString};
+        $scope.pageWithNewClasses = PageFactory.update({id:$scope.pageObj.id}, $scope.pageClassToBeUploaded);
+    };
+
 
     $scope.my = { message3: false };
     $scope.toggleClass3 = function(){
@@ -134,113 +162,24 @@ myApp.controller("ContentElementCtrl",['$scope','PageFactory', '$routeParams',fu
     }
 
     $scope.closeModal = function(){
-        console.log("Closed");   
+        $scope.mceVisibility = {boolean: false};  
     }
 
-    $scope.pageArray = [{
-        jsonObjNo : 1,
-        columns : [{
-            items : [
-            {
-                id: 0,
-                type : "image",
-                image : {
-                    src : "images/officeBuilding1.jpg",
-                    width : 400,
-                    height : 400,
-                    align : "center"
-                    //tag:"<img src='"+src+"' width='"+width+"' height='"+height+"' align='"+align+"'>"
-                }
-            },
-            {
-                id: 1,
-                type: "text",
-                text : "Listicle intelligentsia shabby chic banjo, authentic neutra wolf chambray aesthetic helvetica church-key fap. Intelligentsia 3 wolf moon humblebrag, beard godard VHS meggings hammock poutine. 90's small batch intelligentsia cardigan four dollar toast yr YOLO twee mixtape semiotics squid offal. Hashtag meh jean shorts tousled yr, waistcoat letterpress cold-pressed fixie plaid single-origin coffee. Shoreditch cornhole hella man bun, art party blue bottle poutine twee flexitarian chicharrones. Polaroid gastropub yr, tumblr thundercats pabst hammock schlitz. Fap green juice messenger bag cred, truffaut lo-fi occupy",
-                size : 12,
-                font: "Arial",
-                headerStyle: "color:blue;margin-left:30px;",
-                headerText: "Heading"
-
-            }]
-        }]
-    },{
-       jsonObjNo : 2,
-        columns : [{
-            items : [
-            {
-                id: 0,
-                type : "image",
-                image : {
-                    src : "images/shipyard1.jpg",
-                    width : 400,
-                    height : 200,
-                    align : "center"
-                    //tag:"<img src='"+src+"' width='"+width+"' height='"+height+"' align='"+align+"'>"
-                }
-            },
-            {
-                id: 1,
-                type: "text",
-                text : "orem ipsum dolor sit amet, consectetur adipiscing elit. Duis tristique nisl quis enim semper condimentum. In vitae sem vel sapien facilisis euismod a vitae ipsum. Ut in ornare quam, non eleifend purus. Vivamus congue, velit eu efficitur bibendum, dui augue lobortis dui, nec pretium purus sem non tortor. Cras nec velit ante. Mauris dui sapien, lacinia quis turpis ut, mattis tincidunt justo. Proin malesuada mi id massa lacinia, vitae ullamcorper nisl sollicitudin. In odio sem, posuere ut lacus non, bibendum tincidunt dolor. Duis et tortor non nisl dignissim gravida ac eu tellus. Curabitur consequat augue massa, ac convallis ligula ornare eu. Praesent malesuada fermentum metus, id fringilla purus sagittis sed. Sed ac orci metus. Nunc dignissim eros tortor, eget vestibulum turpis cursus vel. Vestibulum ac vestibulum magna. Nunc egestas malesuada turpis, ac pulvinar neque auctor non. Integer lectus justo, pellentesque a facilisis ut, pharetra vel augue.",
-                size : 12,
-                font: "Arial",
-                headerStyle: "color:blue;margin-left:30px;",
-                headerText: "Heading"
-
-            }]
-        }]
-    }]
-
-
-    $scope.models = {
-        selected: null,
-        templates:[
-            {type: "item", id: 2},
-            {type: "container", id:1, columns:[[],[]]}
-        ],
-        dropzones:{
-            "A":[
-                {
-                    "type": "container",
-                    "id": 1,
-                    "columns":[
-                        {
-                            "type": "item",
-                            "id" : "1"
-                        }
-                    ]
-                }
-            ],
-            "B":[
-                {
-                    "type": "container",
-                    "id": 2,
-                    "columns":[
-                        {
-                            "type": "item",
-                            "id" : "1"
-                        }
-                    ]
-                }
-            ]
-        }
-    };
-
-    
+    $scope.dropFunc = function(e){
+        console.log(angular.element(e.target));
+    }
 
     // // Generate initial model
     // for (var i = 1; i <= 3; ++i) {
     //     $scope.models.lists.A.push({label: "Image" + i});
-    //     //$scope.models.lists.B.push({label: "Item B" + i});
+    //     $scope.models.lists.B.push({label: "Item B" + i});
     // }
 
-
-
-    // Model to JSON for demo purpose
-    $scope.$watch('pageArray', function(pageArray) {
-        $scope.modelAsJson = angular.toJson(pageArray, true);
-        //console.log($scope.modelAsJson);
-        //console.log($scope.pageArray);
-    }, true);
+    // // Model to JSON for demo purpose
+    // $scope.$watch('pageArray', function(pageArray) {
+    //     $scope.modelAsJson = angular.toJson(pageArray, true);
+    //     console.log($scope.modelAsJson);
+    //     console.log($scope.pageArray);
+    // }, true);
 
 }]);

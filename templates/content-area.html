@@ -1,24 +1,27 @@
-<div class="content panel col-md-6" ng-controller="ContentElementCtrl">
+<div class="content panel col-md-6" ng-controller="ContentAreaCtrl">
 	<ul>
 		<li ng-repeat="page in pageObject.columns"></li>
 
 	</ul>	
 	
-	<div  class="defaultClass1" ng-show="!my.message" ng-hide="my.message"><img src="{{pageObject.columns[0].items[0].image.src}}" width="{{pageObject.columns[0].items[0].image.width}}" height="{{pageObject.columns[0].items[0].image.height}}" align="{{pageObject.columns[0].items[0].image.align}}" ng-click="alert(this)"></div>
-	<div  class="defaultClass2" ng-show="!my.message" ng-hide="my.message" ng-click="alert(this)"><h1 class="{{pageObject.columns[0].items[1].type}}" style="{{pageObject.columns[0].items[1].headerStyle}}">{{pageObject.columns[0].items[1].headerText}}</h1>
+	<div  class="{{pageObject.columns[0].items[0].cssClass}}" data-drop="true" data-jqyoui-options jqyoui-droppable="{onDrop:'dropFunc'}" ng-show="!my.message" ng-hide="my.message">
+		<img src="{{pageObject.columns[0].items[0].image.src}}" width="{{pageObject.columns[0].items[0].image.width}}" height="{{pageObject.columns[0].items[0].image.height}}" align="{{pageObject.columns[0].items[0].image.align}}" ng-click="alert(this)">
+	</div>
+
+	<div  class="{{pageObject.columns[0].items[1].cssClass}}" ng-show="!my.message" ng-hide="my.message" ng-click="alert(this)"><h1 class="{{pageObject.columns[0].items[1].type}}" style="{{pageObject.columns[0].items[1].headerStyle}}">{{pageObject.columns[0].items[1].headerText}}</h1>
 
 		<p class="{{pageObject.columns[0].items[1].type}}" style="{{pageObject.columns[0].items[1].headerStyle}}" ng-click="tinyMceLoad()" ng-bind-html="pageObject.columns[0].items[1].text"></p></div>
 				
 		
 
-		<div class="defaultClass7" ng-show="my.message3">SAMPLE3</div>
-		<div class="defaultClass8" ng-show="my.message3">SAMPLE3</div>
-		<div class="defaultClass9" ng-show="my.message3">SAMPLE3</div>		
+		<div class="defaultClass7" data-drop="true" data-jqyoui-options jqyoui-droppable ng-show="my.message3">SAMPLE3</div>
+		<div class="defaultClass8" data-drop="true" data-jqyoui-options jqyoui-droppable ng-show="my.message3">SAMPLE3</div>
+		<div class="defaultClass9" data-drop="true" data-jqyoui-options jqyoui-droppable ng-show="my.message3">SAMPLE3</div>		
 
-		<div class="defaultClass5" ng-show="my.message2">SAMPLE2</div>
-		<div class="defaultClass6" ng-show="my.message2">SAMPLE2</div>
-		<div class="defaultClass3" ng-show="my.message">SAMPLE</div>
-		<div class="defaultClass4" ng-show="my.message">SAMPLE</div>
+		<div class="defaultClass5" data-drop="true" data-jqyoui-options jqyoui-droppable ng-show="my.message2">SAMPLE2</div>
+		<div class="defaultClass6" data-drop="true" data-jqyoui-options jqyoui-droppable ng-show="my.message2">SAMPLE2</div>
+		<div class="defaultClass3" data-drop="true" data-jqyoui-options jqyoui-droppable ng-show="my.message">SAMPLE</div>
+		<div class="defaultClass4" data-drop="true" data-jqyoui-options jqyoui-droppable ng-show="my.message">SAMPLE</div>
 		
 
 		<div class="formatButton col-md-6" >
@@ -32,11 +35,11 @@
 
 		<div class="z1" ng-show="mceVisibility.boolean">
 		<!-- Modal -->
-		<div class="z1" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="z1" id="myModal" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="closeModal()">
 							<span aria-hidden="true">&times;</span>
 						</button>
 						<h4 class="modal-title" id="myModalLabel">Modal title</h4>
