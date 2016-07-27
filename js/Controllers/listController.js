@@ -166,7 +166,8 @@ myApp.controller("ContentAreaCtrl",['$scope','PageFactory', '$routeParams',funct
     }
 
     $scope.dropFunc = function(e){
-        console.log(angular.element(e.target));
+        console.log(e.target.attributes.type);
+        console.log(e.toElement);
     }
 
     // // Generate initial model
