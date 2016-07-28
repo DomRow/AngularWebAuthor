@@ -79,9 +79,8 @@ myApp.controller("ContentAreaCtrl",['$scope','PageFactory', '$routeParams',funct
         $scope.pageObject.columns[0].items[1].cssClass = "defaultClass8";
         $scope.pageObject.columns[0].items[2] = {"cssClass":"defaultClass9"};
         console.log($scope.pageObject.columns[0].items[2]);
-        //add a "cssClass" to the 3rd item
-        // $scope.my.message2   = !$scope.my.message2;
-        // $scope.my.message3   = !$scope.my.message3;
+        //toggle 3rd div
+        $scope.addDiv3 = {boolean:true};
         
     }
 
