@@ -4,6 +4,4 @@
 #Ignore zip file backups
 *.zip
 
-#htaccess
-.htaccess
 
