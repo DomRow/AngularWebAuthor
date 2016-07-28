@@ -51,12 +51,6 @@ myApp.controller("ElementListCtrl", ['$scope', 'BroadCastFactory','ModalService'
 */
 myApp.controller("ContentAreaCtrl",['$scope','PageFactory', '$routeParams',function($scope,PageFactory, $routeParams) {
     
-    $scope.$on('cssToggle1', function(event,data){
-        var newClass = $scope.newClass = data;
-        console.log($scope.newClass);
-        console.log("cssToggle1");    
-    })
-
     $scope.my = { message: false };
     $scope.toggleClass1 = function(){
         console.log("toggle 1");
@@ -75,8 +69,38 @@ myApp.controller("ContentAreaCtrl",['$scope','PageFactory', '$routeParams',funct
         //cycle through classes array and bind new value to columns object
         $scope.pageObject.columns[0].items[0].cssClass = "defaultClass3";
         $scope.pageObject.columns[0].items[1].cssClass = "defaultClass4";
-
     }
+
+    $scope.my = { message3: false };
+    $scope.toggleClass3 = function(){
+        console.log("toggle 3");
+        //add a new "item" to the columns object
+        $scope.pageObject.columns[0].items[0].cssClass = "defaultClass7";
+        $scope.pageObject.columns[0].items[1].cssClass = "defaultClass8";
+        $scope.pageObject.columns[0].items[2] = {"cssClass":"defaultClass9"};
+        console.log($scope.pageObject.columns[0].items[2]);
+        //add a "cssClass" to the 3rd item
+        // $scope.my.message2   = !$scope.my.message2;
+        // $scope.my.message3   = !$scope.my.message3;
+        
+    }
+
+    $scope.$on('cssToggle1', function(event,data){
+        var newClass = $scope.newClass = data;
+        console.log($scope.newClass);
+    })
+
+    $scope.$on('cssToggle2', function(event,data){
+        var newClass2 = $scope.newClass2 = data;
+        console.log($scope.newClass2);
+    })
+
+    $scope.$on('cssToggle3', function(event,data){
+        console.log("toggle 3 event handle");
+    })
+
+
+
 
     $scope.updateHtml = function(){
         console.log("update");
@@ -90,12 +114,7 @@ myApp.controller("ContentAreaCtrl",['$scope','PageFactory', '$routeParams',funct
     };
 
 
-    $scope.my = { message3: false };
-    $scope.toggleClass3 = function(){
-        $scope.my.message2   = !$scope.my.message2;
-        $scope.my.message3   = !$scope.my.message3;
-        console.log("toggle 3");
-    }
+    
 
     $scope.tinyMceLoad = function(){
         console.log("Text Area Click");
@@ -103,12 +122,6 @@ myApp.controller("ContentAreaCtrl",['$scope','PageFactory', '$routeParams',funct
         console.log($scope.showMce);
 
     }
-
-    $scope.$on('cssToggle2', function(event,data){
-        var newClass2 = $scope.newClass2 = data;
-        console.log($scope.newClass2);
-
-    })
 
     $scope.$on('eventSend', function(event,data){
         
@@ -168,6 +181,8 @@ myApp.controller("ContentAreaCtrl",['$scope','PageFactory', '$routeParams',funct
     $scope.dropFunc = function(e){
         console.log(e.target.attributes.type);
         console.log(e.toElement);
+        $scope.srcVar = "";
+
     }
 
     // // Generate initial model

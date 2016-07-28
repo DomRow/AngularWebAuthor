@@ -1,3 +1,4 @@
+/*THis factory is used to load resources in the app*/
 myApp.factory("PagesFactory", function($resource){
 	return $resource("http://localhost/angProj/api/pages", {},{
 		query:{ method:'GET', isArray: false },
