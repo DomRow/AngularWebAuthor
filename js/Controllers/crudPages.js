@@ -17,7 +17,7 @@ myApp.controller('GlobalCtrl', ['$scope', '$window', 'PagesFactory','PageFactory
 
 myApp.controller('GetListCtrl', ['$scope', '$window', 'PagesFactory','PageFactory',
 	function($scope, $window, PagesFactory, PageFactory){
-	
+
 	$scope.editPage = function (pageId){
 		$window.location.href = '#/page-detail/' + pageId;
 	};
@@ -42,6 +42,7 @@ myApp.controller('GetListCtrl', ['$scope', '$window', 'PagesFactory','PageFactor
 
 myApp.controller('AddPageCtrl', ['$scope', '$window', '$routeParams', 'PagesFactory','BroadCastFactory',
 	function($scope, $window, $routeParams, PagesFactory, BroadCastFactory) {
+
 		if($routeParams.pageId === undefined){
 			$scope.page = new PagesFactory();
 		}
@@ -62,6 +63,7 @@ myApp.controller('AddPageCtrl', ['$scope', '$window', '$routeParams', 'PagesFact
 
 		$scope.addPage = function () {
 			PagesFactory.save($scope.page, function(){
+				console.log($scope.page);
 				console.log("Page save");
 				//reload pages
 				$scope.reloadPages();
@@ -72,12 +74,14 @@ myApp.controller('AddPageCtrl', ['$scope', '$window', '$routeParams', 'PagesFact
 			});
 		};
 
-		
-
 		$scope.$on('eventSend', function(event,data){
 			console.log(data);
+			
+			console.log($scope.pageNumber);
 
 		});
+
+		$scope.pageNumber = 3;
 
 		$scope.deletePage = function(){
 			console.log("delete page clicked");
@@ -92,6 +96,7 @@ myApp.controller('AddPageCtrl', ['$scope', '$window', '$routeParams', 'PagesFact
 			BroadCastFactory.prepForBroadcast(e,msg);
 			console.log(BroadCastFactory);
 		}
+
 
 		$scope.cancelPage = function () {
 			console.log("Cancel click");

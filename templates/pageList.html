@@ -1,5 +1,5 @@
 <div class="left panel col-md-3" ng-controller="AddPageCtrl" >
-		<h2>Page list</h2>
+		<h2>Page</h2>		
 		<button type="button" class="btn" ng-click="newPage()">+</button>
 		<button><div go-for>Edit</div></button>
 		<button ng-click="deletePage()">Delete</button>
@@ -8,8 +8,9 @@
 		<div ng-controller="GetListCtrl">
 			<ul>
 				<li  ng-repeat="page in pages">
-					<a href="#" data-id="{{page.id}}" content-pop class="list-group-item" ng-click="displayHtml(e,page.id)">{{page.page_number}}<i class="fa fa-cog" id="cogs" aria-hidden="true"></i></a>
+					<a href="#" data-id="{{page.id}}" content-pop class="list-group-item" ng-click="displayHtml(e,page.id)" >{{page.page_number}} {{page.title}}</a>
 				</li>
+				<li>Current Page: </li>				
 			</ul>
 
 		</div>

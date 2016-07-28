@@ -5,7 +5,8 @@
 	</ul>	
 	
 	<div class="{{pageObject.columns[0].items[0].cssClass}}" type="{{pageObject.columns[0].items[0].type}}" data-drop="true" data-jqyoui-options jqyoui-droppable="{onDrop:'dropFunc'}" ng-show="!my.message" ng-hide="my.message">
-		<img src="{{pageObject.columns[0].items[0].image.src}}" width="{{pageObject.columns[0].items[0].image.width}}" height="{{pageObject.columns[0].items[0].image.height}}" align="{{pageObject.columns[0].items[0].image.align}}" ng-click="alert(this)">
+		<img src="{{pageObject.columns[0].items[0].image.src}}" width="{{pageObject.columns[0].items[0].image.width}}" height="{{pageObject.columns[0].items[0].image.height}}" align="{{pageObject.columns[0].items[0].image.align}}" ng-click="alert(this)" ng-if="addImage.boolean">
+		<input type="file" multiple ng-if="addImage.boolean"/>
 	</div>
 
 	<div class="{{pageObject.columns[0].items[1].cssClass}}" type="{{pageObject.columns[0].items[1].type}}" ng-show="!my.message" ng-hide="my.message" ng-click="alert(this)"><h1 class="{{pageObject.columns[0].items[1].type}}" style="{{pageObject.columns[0].items[1].headerStyle}}">{{pageObject.columns[0].items[1].headerText}}</h1>
@@ -26,6 +27,7 @@
 
 		<div class="formatButton col-md-6" >
 			<ul class="list-inline > li">
+
 				<li><h3><button class="btn" ng-click="updateHtml()">Update</button></h3></li>
 				<li><h3><button class="{{classesCss[0]}} btn" ng-click="toggleClass1()"><i class="fa fa-braille" aria-hidden="true" ></i></button></h3></li>
 				<li><h3><button class="{{classesCss[1]}} btn" ng-click="toggleClass2()"><i class="fa fa-braille" aria-hidden="true" ></i></button></h3></li>

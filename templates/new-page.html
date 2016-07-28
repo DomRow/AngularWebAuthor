@@ -1,10 +1,6 @@
 <div class="left panel col-md-3" ng-controller="AddPageCtrl">
 		<table>
-			<form>
-				<tr>
-					<td><label>ID: </label></td>
-					<td><input name="id" type="text" value="{{ page.id }}" ng-model="page.id" disabled/></td>
-				</tr>	
+			<form>	
 				<tr>	
 					<td><label>No: </label></td>
 					<td><input name="page_number" type="text" value="{{ page_number}}" ng-model="page.page_number" required/></td>
@@ -12,10 +8,6 @@
 				<tr>
 					<td><label>Title: </label></td>
 					<td><input name="title" type="text" value="{{ page.title }}" ng-model="page.title" /></td>
-				</tr>
-				<tr>
-					<td><label>P-ID: </label></td>
-					<td><input name="project_number" type="text" value="{{ page.project_number }}" ng-model="page.project_number" /></td>
 				</tr>
 				<tr>
 					<td><label>JSON: </label></td>

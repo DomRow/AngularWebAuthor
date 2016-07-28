@@ -50,7 +50,7 @@ myApp.controller("ElementListCtrl", ['$scope', 'BroadCastFactory','ModalService'
     Content Area Ctrl for Drop Elements
 */
 myApp.controller("ContentAreaCtrl",['$scope','PageFactory', '$routeParams',function($scope,PageFactory, $routeParams) {
-    
+
     $scope.my = { message: false };
     $scope.toggleClass1 = function(){
         console.log("toggle 1");
@@ -97,8 +97,6 @@ myApp.controller("ContentAreaCtrl",['$scope','PageFactory', '$routeParams',funct
     $scope.$on('cssToggle3', function(event,data){
         console.log("toggle 3 event handle");
     })
-
-
 
 
     $scope.updateHtml = function(){
@@ -181,8 +179,16 @@ myApp.controller("ContentAreaCtrl",['$scope','PageFactory', '$routeParams',funct
         console.log(e.target.attributes.type);
         console.log(e.toElement);
         $scope.srcVar = "";
+        //onDrop - showImage
+        $scope.addImage = {boolean:true}
+        //boolean triggers directive to add image?
+        //upload file
+        //bind filename to src in jsonObj
+        //bind width & height?
 
     }
+    
+    //$scope.pageNumber = pageObject.page_number;
 
     // // Generate initial model
     // for (var i = 1; i <= 3; ++i) {
