@@ -98,7 +98,6 @@ myApp.controller("ContentAreaCtrl",['$scope','PageFactory', '$routeParams',funct
         console.log("toggle 3 event handle");
     })
 
-
     $scope.updateHtml = function(){
         console.log("update");
         //json component
@@ -108,20 +107,15 @@ myApp.controller("ContentAreaCtrl",['$scope','PageFactory', '$routeParams',funct
         var fullPageObject = $scope.pageObj;
         $scope.pageClassToBeUploaded = {page_number:fullPageObject.page_number,title:fullPageObject.title, jsonObj:jsonString};
         $scope.pageWithNewClasses = PageFactory.update({id:$scope.pageObj.id}, $scope.pageClassToBeUploaded);
-    };
-
-
-    
+    };  
 
     $scope.tinyMceLoad = function(){
         console.log("Text Area Click");
         $scope.showMce = !$scope.showMce;
         console.log($scope.showMce);
-
     }
 
-    $scope.$on('eventSend', function(event,data){
-        
+    $scope.$on('eventSend', function(event,data){  
         var num = $scope.pageToLoad = data;
         
         //$scope.pageObject = $scope.pageArray[num];
@@ -136,12 +130,8 @@ myApp.controller("ContentAreaCtrl",['$scope','PageFactory', '$routeParams',funct
                 console.log(jsonTest);
                 // console.log(JSON.stringify(jsonTest));
 
-                var ting = $scope.pageObject = eval("("+jsonTest+")");
-                console.log(ting);
-                // console.log(ting.columns[0].items[0]);
-                // console.log(ting.columns[0].items[1]);
-                return $scope.pageObject;
-                
+                $scope.pageObject = eval("("+jsonTest+")");             
+                return $scope.pageObject;             
         })
     })
 
@@ -152,19 +142,14 @@ myApp.controller("ContentAreaCtrl",['$scope','PageFactory', '$routeParams',funct
     $scope.savePtext = function(){
         alert("Are you sure?")
         var currentId = $scope.pageToLoad;
-        console.log($scope.pageToLoad);
         //new empty text variable 
         var newText = $scope.nextTextBound = "";
         //Bind new text to variable
         var textToBeBound = $scope.htmlVariable;
-        console.log(textToBeBound);
         //Bind back to JSON object's text value
         $scope.pageObject.columns[0].items[1].text = textToBeBound;
-        //
         $scope.testString = JSON.stringify($scope.pageObject);
-        console.log($scope.testString);
         $scope.pageToBeUploaded = {page_number:$scope.pageLoad.page_number,title:$scope.pageLoad.title, jsonObj:$scope.testString};
-        console.log($scope.pageToBeUploaded);
         //Update data base 
         $scope.pText = PageFactory.update({id:$scope.pageToLoad}, $scope.pageToBeUploaded);
         //pageObject is just the json value
@@ -185,8 +170,15 @@ myApp.controller("ContentAreaCtrl",['$scope','PageFactory', '$routeParams',funct
         //upload file
         //bind filename to src in jsonObj
         //bind width & height?
-
     }
+
+    $scope.layouts = [
+        {name:'Two Cols Vertical', url:'cols2'},
+        {name:'Two Cols Horizontal', url:'cols2h'},
+        {name:'One Col Left - Two Tiles Right', url:'1l2tiles'}
+    ]
+
+    $scope.myLayout = $scope.layouts[0];
     
     //$scope.pageNumber = pageObject.page_number;
 

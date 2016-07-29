@@ -16,12 +16,7 @@
 			</tr>
 			<tr>
 				<td><label>CSS Template: </label></td>
-				<td><select>
-					<option value="css1">Two Columns Vertical</option>
-					<option value="css2">Two Rows Horizontal</option>
-					<option value="css3">One column left Two Right</option>
-					<option value="css4">Two tiles right and One left</option>
-				</select></td>
+				<td><select ng-model="myLayout" ng-options="layout.name for layout in layouts"></select></td>
 
 			</tr>	
 			<tr>

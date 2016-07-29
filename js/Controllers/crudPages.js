@@ -12,10 +12,8 @@ myApp.controller('GlobalCtrl', ['$scope', '$window', 'PagesFactory','PageFactory
 		$scope.pages = PagesFactory.query(function(data){
 			$scope.pages = data.page;
 		})
-		console.log($scope);
 
 		$scope.$on('eventSend', function(e, data){
-			console.log(data);
 			$scope.currentPage = data;
 		})
 	}
@@ -63,6 +61,7 @@ myApp.controller('AddPageCtrl', ['$scope', '$window', '$routeParams', 'PagesFact
 
 		$scope.reloadPages = function(){
 			PagesFactory.query(function(data){
+				console.log("called");
 				$scope.pages = data.page;
 			})
 		}	
@@ -73,6 +72,12 @@ myApp.controller('AddPageCtrl', ['$scope', '$window', '$routeParams', 'PagesFact
 				console.log("Page save");
 				//reload pages
 				$scope.reloadPages();
+				if($scope.page.jsonObj == "{}"){
+						
+				}
+				else{
+					console.log("Else JSON");
+				}
 				$window.location.href = '#/pages';
 			}, function(err){
 				console.log(err);
