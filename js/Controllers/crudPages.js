@@ -16,6 +16,11 @@
 			$scope.$on('eventSend', function(e, data){
 				$scope.currentPage = data;
 			})
+
+			$scope.$on('cssEvent', function(e, css){
+				$scope.layout = css;
+				console.log($scope.layout);
+			})
 		}
 		]);		
 
@@ -44,8 +49,8 @@
 		});
 	}]);
 
-	myApp.controller('AddPageCtrl', ['$scope', '$window', '$routeParams', 'PagesFactory','BroadCastFactory',
-		function($scope, $window, $routeParams, PagesFactory, BroadCastFactory) {
+	myApp.controller('AddPageCtrl', ['$scope', '$window', '$routeParams', 'PagesFactory','BroadCastFactory', 'PageFactory',
+		function($scope, $window, $routeParams, PagesFactory, BroadCastFactory, PageFactory) {
 
 			if($routeParams.pageId === undefined){
 				$scope.page = new PagesFactory();
@@ -67,6 +72,7 @@
 			}	
 
 			$scope.addPage = function () {
+					console.log($scope.page);
 				PagesFactory.save($scope.page, function(){
 					console.log($scope.page);
 					console.log("Page save");
@@ -74,6 +80,9 @@
 				$scope.reloadPages();
 				if($scope.page.jsonObj == "{}"){
 
+					$scope.page.jsonObj === "{'columns':[{'items':["+ 2 +"]}]}"
+					console.log($scope.page);
+					PageFactory.update({id:$scope.page.id}, $scope.page);
 				}
 				else{
 					console.log("Else JSON");
@@ -114,13 +123,18 @@
 				$window.location.href = '#/pages';
 			};
 
+			$scope.cssEvent = function(e,css){
+				$scope.event = e = 'cssEvent';
+				BroadCastFactory.prepForBroadcast(e,css);	
+			}
+
 			$scope.layouts = [
 				{name:'twoColsVert', url:'cols2'},
 				{name:'twoColsHoriz', url:'cols2h'},
 				{name:'One Col Left - Two Tiles Right', url:'1l2tiles'}
 			]
 
-			$scope.myLayout = $scope.layouts[0];
+			$scope.layout = $scope.layouts[0];
 	}]);
 
 myApp.controller('PageDetailCtrl', ['$scope','$routeParams','PageFactory','$window',

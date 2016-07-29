@@ -16,7 +16,7 @@
 			</tr>
 			<tr>
 				<td><label>CSS Template: </label></td>
-				<td><select class="form-control" ng-model="myLayout" ng-options="layout.name for layout in layouts"></td>
+				<td><select class="form-control" ng-model="item" ng-options="layout.name for layout in layouts" ng-change="cssEvent(e,item)"></td>
 				
 			</tr>	
 			<tr>
