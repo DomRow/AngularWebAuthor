@@ -12,6 +12,12 @@ li{
 	width:20%;
 }
 
+.pagebar{
+	width: 100%;
+	background-color:#bdc3c7;
+	text-align: center; 
+}
+
 .form{
 	padding: 15px;
 }

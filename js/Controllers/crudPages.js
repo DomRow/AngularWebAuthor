@@ -12,6 +12,12 @@ myApp.controller('GlobalCtrl', ['$scope', '$window', 'PagesFactory','PageFactory
 		$scope.pages = PagesFactory.query(function(data){
 			$scope.pages = data.page;
 		})
+		console.log($scope);
+
+		$scope.$on('eventSend', function(e, data){
+			console.log(data);
+			$scope.currentPage = data;
+		})
 	}
 ]);		
 
