@@ -10,17 +10,17 @@
 				<td><label>Title: </label></td>
 				<td><input name="title" type="text" value="{{ page.title }}" ng-model="page.title" required/></td>
 			</tr>
-			<tr>
+			<!-- <tr>
 				<td><label>JSON: </label></td>
 				<td><input name="jsonObj" type="text" value="{{ page.jsonObj }}" ng-model="page.jsonObj" /></td>
-			</tr>
+			</tr> -->
 			<tr>
 				<td><label>CSS Template: </label></td>
-				<td><select class="form-control" ng-model="item" ng-options="layout.name for layout in layouts" ng-change="cssEvent(e,item)"></td>
+				<td><select class="form-control" ng-model="page.cssPage" ng-options="layout for layout in layouts" ng-change="cssEvent(e,item)"></td>
 				
 			</tr>	
 			<tr>
-				<td><ul class="list-inline"><li><button class="btn" ng-click="addPage()">Add Page</button></li></td>
+				<td><ul class="list-inline"><li><button class="btn"  ng-click="addPage()">Add Page</button></li></td>
 				<td><li><button class="btn" ng-click="cancelPage()">Cancel</button></li></ul></td>
 			</tr>	
 		</form>

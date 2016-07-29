@@ -72,21 +72,19 @@
 			}	
 
 			$scope.addPage = function () {
-					console.log($scope.page);
+				console.log($scope.page.cssPage);
+				if($scope.page.cssPage == "cols2"){
+					console.log("2");
+					$scope.page.jsonObj == "{'columns':[{'items':[{},{}]}]}"
+					//$scope.page.jsonObj =angular.toJson($scope.page.jsonObj);
+				}
+				
 				PagesFactory.save($scope.page, function(){
 					console.log($scope.page);
 					console.log("Page save");
 				//reload pages
 				$scope.reloadPages();
-				if($scope.page.jsonObj == "{}"){
-
-					$scope.page.jsonObj === "{'columns':[{'items':["+ 2 +"]}]}"
-					console.log($scope.page);
-					PageFactory.update({id:$scope.page.id}, $scope.page);
-				}
-				else{
-					console.log("Else JSON");
-				}
+				
 				$window.location.href = '#/pages';
 			}, function(err){
 				console.log(err);
@@ -128,11 +126,7 @@
 				BroadCastFactory.prepForBroadcast(e,css);	
 			}
 
-			$scope.layouts = [
-				{name:'twoColsVert', url:'cols2'},
-				{name:'twoColsHoriz', url:'cols2h'},
-				{name:'One Col Left - Two Tiles Right', url:'1l2tiles'}
-			]
+			$scope.layouts = {1:"cols2",2:"cols2h",3:3};
 
 			$scope.layout = $scope.layouts[0];
 	}]);
