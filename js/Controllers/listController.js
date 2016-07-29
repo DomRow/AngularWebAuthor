@@ -172,14 +172,6 @@ myApp.controller("ContentAreaCtrl",['$scope','PageFactory', '$routeParams',funct
         //bind width & height?
     }
 
-    $scope.layouts = [
-        {name:'Two Cols Vertical', url:'cols2'},
-        {name:'Two Cols Horizontal', url:'cols2h'},
-        {name:'One Col Left - Two Tiles Right', url:'1l2tiles'}
-    ]
-
-    $scope.myLayout = $scope.layouts[0];
-    
     //$scope.pageNumber = pageObject.page_number;
 
     // // Generate initial model

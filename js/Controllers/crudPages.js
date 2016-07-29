@@ -1,40 +1,40 @@
 /*
 	This file contains the 
-*/
-var mainURL = "http://localhost/angProj/api/pages";
+	*/
+	var mainURL = "http://localhost/angProj/api/pages";
 
 /*
 	Global control makes the page objects returned from the DB accessible by the other controllers.
 	Thus acting as a parent scope
-*/
-myApp.controller('GlobalCtrl', ['$scope', '$window', 'PagesFactory','PageFactory',
-	function($scope, $window, PagesFactory, PageFactory){
-		$scope.pages = PagesFactory.query(function(data){
-			$scope.pages = data.page;
-		})
+	*/
+	myApp.controller('GlobalCtrl', ['$scope', '$window', 'PagesFactory','PageFactory',
+		function($scope, $window, PagesFactory, PageFactory){
+			$scope.pages = PagesFactory.query(function(data){
+				$scope.pages = data.page;
+			})
 
-		$scope.$on('eventSend', function(e, data){
-			$scope.currentPage = data;
-		})
-	}
-]);		
+			$scope.$on('eventSend', function(e, data){
+				$scope.currentPage = data;
+			})
+		}
+		]);		
 
-myApp.controller('GetListCtrl', ['$scope', '$window', 'PagesFactory','PageFactory',
-	function($scope, $window, PagesFactory, PageFactory){
+	myApp.controller('GetListCtrl', ['$scope', '$window', 'PagesFactory','PageFactory',
+		function($scope, $window, PagesFactory, PageFactory){
 
-	$scope.editPage = function (pageId){
-		$window.location.href = '#/page-detail/' + pageId;
-	};
+			$scope.editPage = function (pageId){
+				$window.location.href = '#/page-detail/' + pageId;
+			};
 
-	$scope.deletePage = function (pageId){
-		console.log("Delete Page " +padeId);
-	}
+			$scope.deletePage = function (pageId){
+				console.log("Delete Page " +padeId);
+			}
 
-	$scope.newPage = function (e,ele) {
-		$window.location.href = ('#/pages/new');
-		$scope.showNewPage = {boolean:true};
-		console.log($scope.showNewPage.boolean);
-	}
+			$scope.newPage = function (e,ele) {
+				$window.location.href = ('#/pages/new');
+				$scope.showNewPage = {boolean:true};
+				console.log($scope.showNewPage.boolean);
+			}
 
 	/*This query (GET) is called twice, add 
 		console.log(data);
@@ -44,36 +44,36 @@ myApp.controller('GetListCtrl', ['$scope', '$window', 'PagesFactory','PageFactor
 		});
 	}]);
 
-myApp.controller('AddPageCtrl', ['$scope', '$window', '$routeParams', 'PagesFactory','BroadCastFactory',
-	function($scope, $window, $routeParams, PagesFactory, BroadCastFactory) {
+	myApp.controller('AddPageCtrl', ['$scope', '$window', '$routeParams', 'PagesFactory','BroadCastFactory',
+		function($scope, $window, $routeParams, PagesFactory, BroadCastFactory) {
 
-		if($routeParams.pageId === undefined){
-			$scope.page = new PagesFactory();
-		}
-		else{
-			console.log("else");
-			$scope.page = PagesFactory.get({
-				pageId : $routeParams.pageId},
-				function(page){
-					console.log("Page Retrieved: " +$scope.page);
-				})	
-		}
+			if($routeParams.pageId === undefined){
+				$scope.page = new PagesFactory();
+			}
+			else{
+				console.log("else");
+				$scope.page = PagesFactory.get({
+					pageId : $routeParams.pageId},
+					function(page){
+						console.log("Page Retrieved: " +$scope.page);
+					})	
+			}
 
-		$scope.reloadPages = function(){
-			PagesFactory.query(function(data){
-				console.log("called");
-				$scope.pages = data.page;
-			})
-		}	
+			$scope.reloadPages = function(){
+				PagesFactory.query(function(data){
+					console.log("called");
+					$scope.pages = data.page;
+				})
+			}	
 
-		$scope.addPage = function () {
-			PagesFactory.save($scope.page, function(){
-				console.log($scope.page);
-				console.log("Page save");
+			$scope.addPage = function () {
+				PagesFactory.save($scope.page, function(){
+					console.log($scope.page);
+					console.log("Page save");
 				//reload pages
 				$scope.reloadPages();
 				if($scope.page.jsonObj == "{}"){
-						
+
 				}
 				else{
 					console.log("Else JSON");
@@ -83,37 +83,44 @@ myApp.controller('AddPageCtrl', ['$scope', '$window', '$routeParams', 'PagesFact
 				console.log(err);
 				console.log($scope.page);
 			});
-		};
+			};
 
-		$scope.$on('eventSend', function(event,data){
-			console.log(data);
-			
-			console.log($scope.pageNumber);
+			$scope.$on('eventSend', function(event,data){
+				console.log(data);
 
-		});
+				console.log($scope.pageNumber);
 
-		$scope.pageNumber = 3;
+			});
 
-		$scope.deletePage = function(){
-			console.log("delete page clicked");
-			//currentPage = ?
-			//id = ?
-			//factory.delete(id)
-			//reloadPages()
-		};
+			$scope.pageNumber = 3;
 
-		$scope.displayHtml = function(e, msg){
-			$scope.event = e = 'eventSend';
-			BroadCastFactory.prepForBroadcast(e,msg);
-			console.log(BroadCastFactory);
-		}
+			$scope.deletePage = function(){
+				console.log("delete page clicked");
+				//currentPage = ?
+				//id = ?
+				//factory.delete(id)
+				//reloadPages()
+			};
+
+			$scope.displayHtml = function(e, msg){
+				$scope.event = e = 'eventSend';
+				BroadCastFactory.prepForBroadcast(e,msg);
+				console.log(BroadCastFactory);
+			}
 
 
-		$scope.cancelPage = function () {
-			console.log("Cancel click");
-			$window.location.href = '#/pages';
-		};
+			$scope.cancelPage = function () {
+				console.log("Cancel click");
+				$window.location.href = '#/pages';
+			};
 
+			$scope.layouts = [
+				{name:'twoColsVert', url:'cols2'},
+				{name:'twoColsHoriz', url:'cols2h'},
+				{name:'One Col Left - Two Tiles Right', url:'1l2tiles'}
+			]
+
+			$scope.myLayout = $scope.layouts[0];
 	}]);
 
 myApp.controller('PageDetailCtrl', ['$scope','$routeParams','PageFactory','$window',

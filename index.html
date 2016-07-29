@@ -45,6 +45,8 @@
 	<link rel="stylesheet" type="text/css" href="css/customStyles.css">
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
 	<link rel="stylesheet" type="text/css" href="css/formats.css">
+	<link rel="stylesheet" type="text/css" ng-href="layout-{{ layout }}.css">
+	
 	<!-- <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"> -->
 
 </head>
@@ -53,7 +55,7 @@
 		<ng-include src="'templates/navBar.html'"></ng-include>
 		
 	</div>
-	
+
 	<div ng-controller="GlobalCtrl">
 	<div class="pagebar">Current Page: {{currentPage}}</div>	 
     		
@@ -79,17 +81,7 @@
 		});
 	
 	</script>
-	<!-- <div class="panel col-md-12" ng-controller="FormatCtrl">
-		<div class="panel col-md-4"></div>
-		<div  class="bottomBar panel col-md-4"></div>
-		<div class="panel col-md-4"></div>
-		<ul class="list-inline > li">
-			<li><h3><button class="btn" ng-click="toggleCss()"><i class="fa fa-braille" aria-hidden="true" ng-click="toggle1()"></i></button></h3></li>
-
-		</ul>	
-	</div> -->
-	
-		
+			
 </body>
 
 </html>

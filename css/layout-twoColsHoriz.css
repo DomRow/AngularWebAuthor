@@ -1,0 +1,22 @@
+/*2 Columns 50%w 100%h--------------------------------*/
+.defaultClass1{
+	width: 50%;
+	height: 100%;
+	background-color: #d3d3d3;
+	float:left;
+	padding: 5px;
+	
+}
+
+.defaultClass2{
+	width: 50%;
+	height: 100%;
+	background-color: #bdbdbd;
+	float:left;
+	padding: 5px;
+	
+}
+
+.div3{
+	visibility: hidden;
+}

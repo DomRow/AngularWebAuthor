@@ -16,8 +16,8 @@
 			</tr>
 			<tr>
 				<td><label>CSS Template: </label></td>
-				<td><select ng-model="myLayout" ng-options="layout.name for layout in layouts"></select></td>
-
+				<td><select class="form-control" ng-model="myLayout" ng-options="layout.name for layout in layouts"></td>
+				
 			</tr>	
 			<tr>
 				<td><ul class="list-inline"><li><button class="btn" ng-click="addPage()">Add Page</button></li></td>
@@ -25,5 +25,23 @@
 			</tr>	
 		</form>
 	</table>	
+	<!-- section to select styles -->
+    <!-- <div class="well">
+        <form>
 
+            <div class="form-group">
+                <label>Theme</label>
+                <select class="form-control" ng-model="css" ng-options="bootstrap.url as bootstrap.name for bootstrap in bootstraps">
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Layout</label>
+                <select class="form-control" ng-model="layout" ng-options="layout.url as layout.name for layout in layouts"></select>
+            </div>
+
+        </form>
+    </div> -->
+
+    <hr>
 </div>
