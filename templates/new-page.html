@@ -16,9 +16,14 @@
 			</tr> -->
 			<tr>
 				<td><label>CSS Template: </label></td>
+				<td><input name="css" type="text" value="{{ page.cssPage }}" ng-model="page.cssPage" required/></td>
+				
+			</tr>
+			<!-- <tr>
+				<td><label>CSS Template: </label></td>
 				<td><select class="form-control" ng-model="page.cssPage" ng-options="layout for layout in layouts" ng-change="cssEvent(e,item)"></td>
 				
-			</tr>	
+			</tr>	 -->
 			<tr>
 				<td><ul class="list-inline"><li><button class="btn"  ng-click="addPage()">Add Page</button></li></td>
 				<td><li><button class="btn" ng-click="cancelPage()">Cancel</button></li></ul></td>

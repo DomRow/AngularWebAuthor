@@ -73,11 +73,7 @@
 
 			$scope.addPage = function () {
 				console.log($scope.page.cssPage);
-				if($scope.page.cssPage == "cols2"){
-					console.log("2");
-					$scope.page.jsonObj == "{'columns':[{'items':[{},{}]}]}"
-					//$scope.page.jsonObj =angular.toJson($scope.page.jsonObj);
-				}
+				console.log($scope.page)
 				
 				PagesFactory.save($scope.page, function(){
 					console.log($scope.page);
